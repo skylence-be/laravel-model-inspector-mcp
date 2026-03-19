@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Skylence\EloquentMcp;
 
 use Illuminate\Support\ServiceProvider;
+use Skylence\EloquentMcp\Console\InstallCommand;
+use Skylence\EloquentMcp\Console\ServeCommand;
+use Skylence\EloquentMcp\Support\Config;
 
 class EloquentMcpServiceProvider extends ServiceProvider
 {
@@ -14,11 +17,18 @@ class EloquentMcpServiceProvider extends ServiceProvider
             __DIR__.'/../config/eloquent-mcp.php',
             'eloquent-mcp'
         );
+
+        $this->app->singleton(Config::class);
     }
 
     public function boot(): void
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/ai.php');
+
+        $this->commands([
+            InstallCommand::class,
+            ServeCommand::class,
+        ]);
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
