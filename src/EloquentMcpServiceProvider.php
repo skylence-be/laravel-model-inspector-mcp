@@ -23,7 +23,9 @@ class EloquentMcpServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadRoutesFrom(__DIR__.'/../routes/ai.php');
+        if ($this->app->environment('local', 'testing')) {
+            $this->loadRoutesFrom(__DIR__.'/../routes/ai.php');
+        }
 
         $this->commands([
             InstallCommand::class,

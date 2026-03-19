@@ -7,11 +7,13 @@ namespace Skylence\EloquentMcp\Mcp\Tools;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Illuminate\Support\Facades\Log;
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Tool;
 use ReflectionClass;
 use ReflectionMethod;
+use ReflectionNamedType;
 use Throwable;
 
 /**
@@ -20,13 +22,16 @@ use Throwable;
  */
 final class RelationshipMap extends Tool
 {
-    protected string $description = 'Map Eloquent relationships for one or more models. Returns relationship names, types (HasMany, BelongsTo, MorphMany, etc.), related model classes, and foreign keys. Accepts fully qualified class names including vendor models.';
+    protected string $name = 'eloquent-get-relationships';
+
+    protected string $description = 'Get the relationship map for one or more Eloquent models. Returns each relationship\'s name, type (HasMany, BelongsTo, MorphMany, BelongsToMany, etc.), related model class, database table, foreign keys, and pivot tables. Use this to understand how models connect to each other.';
 
     public function schema(JsonSchema $schema): array
     {
         return [
             'models' => $schema->string()
-                ->description('Comma-separated fully qualified model class names, e.g. "App\\Models\\User,App\\Models\\Post"'),
+                ->description('Comma-separated fully qualified model class names, e.g. "App\\Models\\User,Skylence\\Erp\\Models\\Sales\\Order"')
+                ->required(),
         ];
     }
 
@@ -83,7 +88,7 @@ final class RelationshipMap extends Tool
             }
 
             $returnType = $method->getReturnType();
-            if (! $returnType instanceof \ReflectionNamedType) {
+            if (! $returnType instanceof ReflectionNamedType) {
                 continue;
             }
 
@@ -127,7 +132,9 @@ final class RelationshipMap extends Tool
                 }
 
                 $relationships[$method->getName()] = $info;
-            } catch (Throwable) {
+            } catch (Throwable $e) {
+                Log::debug("Eloquent MCP: failed to resolve relationship {$className}::{$method->getName()}: {$e->getMessage()}");
+
                 $relationships[$method->getName()] = [
                     'type' => class_basename($returnTypeName),
                     'error' => 'Could not resolve relationship at runtime.',

@@ -16,13 +16,16 @@ use Laravel\Mcp\Server\Tool;
  */
 final class SchemaInspector extends Tool
 {
-    protected string $description = 'Inspect the database table schema for an Eloquent model. Returns columns with types, indexes, and foreign keys. Accepts a fully qualified class name or a raw table name.';
+    protected string $name = 'eloquent-get-table-schema';
+
+    protected string $description = 'Get the database table schema for an Eloquent model or raw table name. Returns columns (name, type, nullable, default), indexes (columns, unique, primary), and foreign keys (referenced table, columns, on_delete/on_update). Use this to understand the database structure behind a model.';
 
     public function schema(JsonSchema $schema): array
     {
         return [
             'target' => $schema->string()
-                ->description('Fully qualified model class name (e.g. App\\Models\\User) or raw table name (e.g. users)'),
+                ->description('Fully qualified model class name (e.g. App\\Models\\User) or database table name (e.g. users)')
+                ->required(),
         ];
     }
 
@@ -44,6 +47,14 @@ final class SchemaInspector extends Tool
             $table = $instance->getTable();
             $connection = $instance->getConnectionName();
         } else {
+            // Validate table name to prevent unexpected input
+            if (! preg_match('/^[a-zA-Z0-9_]+$/', $target)) {
+                return Response::json([
+                    'error' => true,
+                    'message' => sprintf('Invalid table name "%s".', $target),
+                ]);
+            }
+
             $table = $target;
             $connection = null;
         }

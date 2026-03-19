@@ -13,6 +13,6 @@ final class ServeCommand extends Command
 {
     public function handle(): int
     {
-        return Artisan::call('mcp:start eloquent');
+        return Artisan::call('mcp:start', ['server' => 'eloquent']);
     }
 }
