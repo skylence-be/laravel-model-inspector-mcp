@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Skylence\EloquentMcp\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
@@ -12,17 +13,19 @@ use Laravel\Mcp\Server\Tool;
 
 /**
  * Inspect an Eloquent model's attributes, relationships, casts, scopes, and observers.
- * Works with any model class, including vendor package models.
  */
 final class ModelInspector extends Tool
 {
-    protected string $description = 'Inspect an Eloquent model for attributes, relationships, casts, scopes, observers, and database schema. Accepts any fully qualified class name including vendor package models.';
+    protected string $name = 'eloquent-inspect-model';
+
+    protected string $description = 'Get detailed information about a specific Eloquent model: its database columns (with types, nullability, defaults), fillable/guarded attributes, casts, relationships, scopes, observers, and associated policy. Use after eloquent-list-models to drill into a specific model.';
 
     public function schema(JsonSchema $schema): array
     {
         return [
             'model' => $schema->string()
-                ->description('Fully qualified model class name, e.g. App\\Models\\User or Skylence\\Erp\\Models\\Sales\\Order'),
+                ->description('Fully qualified model class name, e.g. App\\Models\\User or Skylence\\Erp\\Models\\Sales\\Order')
+                ->required(),
         ];
     }
 
@@ -38,7 +41,7 @@ final class ModelInspector extends Tool
             ]);
         }
 
-        if (! is_subclass_of($model, \Illuminate\Database\Eloquent\Model::class)) {
+        if (! is_subclass_of($model, Model::class)) {
             return Response::json([
                 'error' => true,
                 'message' => sprintf('Class "%s" is not an Eloquent model.', $model),

@@ -30,16 +30,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Model Discovery Paths
+    | Extra Model Paths
     |--------------------------------------------------------------------------
     |
-    | Directories to scan for Eloquent models. By default only app/Models
-    | is scanned. Add vendor package paths to discover package models.
-    |
-    | Example: 'vendor/skylence/erp/src/Models'
+    | Model discovery automatically scans all Composer PSR-4 namespaces
+    | that contain "Models" (e.g. app/Models, vendor package Models/).
+    | Add extra paths here only if your models live outside that convention.
     |
     */
-    'model_paths' => [
-        'app/Models',
+    'extra_model_paths' => [
+        //
     ],
 ];

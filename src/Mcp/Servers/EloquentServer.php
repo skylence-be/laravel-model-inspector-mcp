@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Skylence\EloquentMcp\Mcp\Servers;
 
 use DirectoryIterator;
+use Illuminate\Support\Str;
 use Laravel\Mcp\Server;
 
 class EloquentServer extends Server
@@ -26,20 +27,23 @@ class EloquentServer extends Server
 
     protected function boot(): void
     {
-        collect($this->discoverTools())->each(fn (string $tool): string => $this->tools[] = $tool);
+        $this->tools = $this->discoverTools();
     }
 
     /** @return array<int, class-string<\Laravel\Mcp\Server\Tool>> */
     protected function discoverTools(): array
     {
         $tools = [];
+        $toolNamespace = (new \ReflectionClass($this))->getNamespaceName();
+        $toolNamespace = Str::beforeLast($toolNamespace, '\\Servers').'\\Tools\\';
+
         $toolDir = new DirectoryIterator(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Tools');
 
         foreach ($toolDir as $toolFile) {
             if ($toolFile->isFile() && $toolFile->getExtension() === 'php') {
-                $fqdn = 'Skylence\\EloquentMcp\\Mcp\\Tools\\'.$toolFile->getBasename('.php');
-                if (class_exists($fqdn)) {
-                    $tools[] = $fqdn;
+                $fqcn = $toolNamespace.$toolFile->getBasename('.php');
+                if (class_exists($fqcn)) {
+                    $tools[] = $fqcn;
                 }
             }
         }
@@ -47,11 +51,11 @@ class EloquentServer extends Server
         $configuredTools = config('eloquent-mcp.tools', []);
         foreach ($configuredTools as $toolName => $enabled) {
             if (! $enabled) {
-                $toolClass = 'Skylence\\EloquentMcp\\Mcp\\Tools\\'.str($toolName)->studly()->toString();
+                $toolClass = $toolNamespace.Str::studly($toolName);
                 $tools = array_filter($tools, fn ($tool) => $tool !== $toolClass);
             }
         }
 
-        return $tools;
+        return array_values($tools);
     }
 }
