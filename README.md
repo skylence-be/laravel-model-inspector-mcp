@@ -24,7 +24,7 @@ Models are auto-discovered from all Composer PSR-4 namespaces containing `Models
 ## Installation
 
 ```bash
-composer require skylence/laravel-model-inspector-mcp
+composer require skylence/laravel-model-inspector-mcp --dev
 ```
 
 ### Quick setup with the install command
