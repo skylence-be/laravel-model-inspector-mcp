@@ -1,0 +1,57 @@
+{
+    "name": "skylence/laravel-eloquent-mcp",
+    "description": "MCP server for Laravel Eloquent model introspection — relationships, attributes, scopes, observers, and database schema",
+    "keywords": [
+        "laravel",
+        "mcp",
+        "eloquent",
+        "model",
+        "introspection",
+        "relationships"
+    ],
+    "homepage": "https://github.com/skylence-be/laravel-eloquent-mcp",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "illuminate/console": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0",
+        "illuminate/database": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0",
+        "laravel/mcp": "^0.3.0 || ^0.5.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.20",
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0|^4.0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Skylence\\EloquentMcp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Skylence\\EloquentMcp\\EloquentMcpServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "lint": "pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
