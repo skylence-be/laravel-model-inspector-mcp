@@ -12,6 +12,6 @@ final class ServeCommand extends Command
 {
     public function handle(): int
     {
-        return $this->call('mcp:start', ['server' => 'eloquent']);
+        return $this->call('mcp:start', ['handle' => 'eloquent']);
     }
 }
