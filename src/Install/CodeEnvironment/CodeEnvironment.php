@@ -129,23 +129,23 @@ abstract class CodeEnvironment
             return false;
         }
 
-        // Build environment string
+        // Build environment string with proper escaping
         $envString = '';
         foreach ($env as $envKey => $value) {
             $envKey = strtoupper($envKey);
-            $envString .= "-e {$envKey}=\"{$value}\" ";
+            $envString .= '-e '.escapeshellarg("{$envKey}={$value}").' ';
         }
 
-        // Replace placeholders in shell command
+        // Replace placeholders in shell command with escaped values
         $command = str_replace([
             '{key}',
             '{command}',
             '{args}',
             '{env}',
         ], [
-            $key,
-            $command,
-            implode(' ', array_map(fn (string $arg): string => '"'.$arg.'"', $args)),
+            escapeshellarg($key),
+            escapeshellarg($command),
+            implode(' ', array_map('escapeshellarg', $args)),
             trim($envString),
         ], $shellCommand);
 

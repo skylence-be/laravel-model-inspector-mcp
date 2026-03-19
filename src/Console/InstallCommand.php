@@ -77,7 +77,7 @@ final class InstallCommand extends Command
         $this->greenTick = $this->green('✓');
         $this->redCross = $this->red('✗');
         $this->selectedTargetMcpClient = collect();
-        $this->projectName = config('app.name');
+        $this->projectName = config('app.name', 'Laravel');
     }
 
     protected function displayHeader(): void

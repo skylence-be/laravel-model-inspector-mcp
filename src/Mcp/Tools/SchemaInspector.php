@@ -48,7 +48,7 @@ final class SchemaInspector extends Tool
             $connection = $instance->getConnectionName();
         } else {
             // Validate table name to prevent unexpected input
-            if (! preg_match('/^[a-zA-Z0-9_]+$/', $target)) {
+            if (! preg_match('/^[a-zA-Z0-9_.]+$/', $target)) {
                 return Response::json([
                     'error' => true,
                     'message' => sprintf('Invalid table name "%s".', $target),
