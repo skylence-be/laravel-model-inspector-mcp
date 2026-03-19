@@ -22,8 +22,24 @@ return [
     |
     */
     'tools' => [
+        'model-discovery' => true,
         'model-inspector' => true,
         'relationship-map' => true,
         'schema-inspector' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Model Discovery Paths
+    |--------------------------------------------------------------------------
+    |
+    | Directories to scan for Eloquent models. By default only app/Models
+    | is scanned. Add vendor package paths to discover package models.
+    |
+    | Example: 'vendor/skylence/erp/src/Models'
+    |
+    */
+    'model_paths' => [
+        'app/Models',
     ],
 ];
