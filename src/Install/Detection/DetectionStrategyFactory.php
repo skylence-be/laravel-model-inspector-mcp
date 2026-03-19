@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install\Detection;
+namespace Skylence\ModelInspectorMcp\Install\Detection;
 
 use Illuminate\Container\Container;
 use InvalidArgumentException;
-use Skylence\EloquentMcp\Install\Contracts\DetectionStrategy;
+use Skylence\ModelInspectorMcp\Install\Contracts\DetectionStrategy;
 
 class DetectionStrategyFactory
 {

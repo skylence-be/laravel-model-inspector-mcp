@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install\Mcp;
+namespace Skylence\ModelInspectorMcp\Install\Mcp;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;

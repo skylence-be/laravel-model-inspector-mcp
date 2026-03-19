@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install;
+namespace Skylence\ModelInspectorMcp\Install;
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
-use Skylence\EloquentMcp\Install\CodeEnvironment\CodeEnvironment;
-use Skylence\EloquentMcp\Install\Detection\DetectionStrategyFactory;
-use Skylence\EloquentMcp\Install\Enums\Platform;
+use Skylence\ModelInspectorMcp\Install\CodeEnvironment\CodeEnvironment;
+use Skylence\ModelInspectorMcp\Install\Detection\DetectionStrategyFactory;
+use Skylence\ModelInspectorMcp\Install\Enums\Platform;
 
 class CodeEnvironmentsDetector
 {
@@ -25,10 +25,10 @@ class CodeEnvironmentsDetector
     protected function getCodeEnvironmentClasses(): array
     {
         return [
-            \Skylence\EloquentMcp\Install\CodeEnvironment\ClaudeCode::class,
-            \Skylence\EloquentMcp\Install\CodeEnvironment\Cursor::class,
-            \Skylence\EloquentMcp\Install\CodeEnvironment\VSCode::class,
-            \Skylence\EloquentMcp\Install\CodeEnvironment\PhpStorm::class,
+            \Skylence\ModelInspectorMcp\Install\CodeEnvironment\ClaudeCode::class,
+            \Skylence\ModelInspectorMcp\Install\CodeEnvironment\Cursor::class,
+            \Skylence\ModelInspectorMcp\Install\CodeEnvironment\VSCode::class,
+            \Skylence\ModelInspectorMcp\Install\CodeEnvironment\PhpStorm::class,
         ];
     }
 

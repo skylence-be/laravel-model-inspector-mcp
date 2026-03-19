@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Console;
+namespace Skylence\ModelInspectorMcp\Console;
 
 use Exception;
 use Illuminate\Console\Command;
@@ -12,11 +12,11 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Laravel\Prompts\Concerns\Colors;
 use Laravel\Prompts\Terminal;
-use Skylence\EloquentMcp\Contracts\McpClient;
-use Skylence\EloquentMcp\Install\CodeEnvironment\CodeEnvironment;
-use Skylence\EloquentMcp\Install\CodeEnvironmentsDetector;
-use Skylence\EloquentMcp\Install\Mcp\FileWriter;
-use Skylence\EloquentMcp\Support\Config;
+use Skylence\ModelInspectorMcp\Contracts\McpClient;
+use Skylence\ModelInspectorMcp\Install\CodeEnvironment\CodeEnvironment;
+use Skylence\ModelInspectorMcp\Install\CodeEnvironmentsDetector;
+use Skylence\ModelInspectorMcp\Install\Mcp\FileWriter;
+use Skylence\ModelInspectorMcp\Support\Config;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 use function Laravel\Prompts\confirm;
@@ -24,7 +24,7 @@ use function Laravel\Prompts\intro;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\note;
 
-#[AsCommand('eloquent-mcp:install', 'Install Laravel Eloquent MCP server into your IDE')]
+#[AsCommand('model-inspector:install', 'Install Laravel Model Inspector MCP server into your IDE')]
 final class InstallCommand extends Command
 {
     use Colors;
@@ -82,7 +82,7 @@ final class InstallCommand extends Command
 
     protected function displayHeader(): void
     {
-        intro('Laravel Eloquent MCP :: Install');
+        intro('Laravel Model Inspector MCP :: Install');
         note(sprintf("Let's configure %s with Eloquent MCP", $this->bgYellow($this->black($this->bold($this->projectName)))));
     }
 
@@ -225,17 +225,17 @@ final class InstallCommand extends Command
     protected function buildMcpCommand(McpClient $mcpClient): array
     {
         if ($this->useSail) {
-            return ['laravel-eloquent-mcp', './vendor/bin/sail', 'artisan', 'eloquent-mcp:serve'];
+            return ['laravel-model-inspector-mcp', './vendor/bin/sail', 'artisan', 'model-inspector:mcp'];
         }
 
         $inWsl = $this->isRunningInWsl();
 
         return array_filter([
-            'laravel-eloquent-mcp',
+            'laravel-model-inspector-mcp',
             $inWsl ? 'wsl' : false,
             $mcpClient->getPhpPath($inWsl),
             $mcpClient->getArtisanPath($inWsl),
-            'eloquent-mcp:serve',
+            'model-inspector:mcp',
         ]);
     }
 

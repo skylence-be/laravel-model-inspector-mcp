@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Contracts;
+namespace Skylence\ModelInspectorMcp\Contracts;
 
 /**
  * Contract for code editors that support MCP (Model Context Protocol).

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install\Contracts;
+namespace Skylence\ModelInspectorMcp\Install\Contracts;
 
-use Skylence\EloquentMcp\Install\Enums\Platform;
+use Skylence\ModelInspectorMcp\Install\Enums\Platform;
 
 interface DetectionStrategy
 {

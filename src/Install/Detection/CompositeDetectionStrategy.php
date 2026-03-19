@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install\Detection;
+namespace Skylence\ModelInspectorMcp\Install\Detection;
 
-use Skylence\EloquentMcp\Install\Contracts\DetectionStrategy;
-use Skylence\EloquentMcp\Install\Enums\Platform;
+use Skylence\ModelInspectorMcp\Install\Contracts\DetectionStrategy;
+use Skylence\ModelInspectorMcp\Install\Enums\Platform;
 
 class CompositeDetectionStrategy implements DetectionStrategy
 {

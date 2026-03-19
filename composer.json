@@ -1,15 +1,16 @@
 {
-    "name": "skylence/laravel-eloquent-mcp",
-    "description": "MCP server for Laravel Eloquent model introspection — relationships, attributes, scopes, observers, and database schema",
+    "name": "skylence/laravel-model-inspector-mcp",
+    "description": "MCP server for Laravel model introspection — relationships, attributes, scopes, observers, and database schema",
     "keywords": [
         "laravel",
         "mcp",
         "eloquent",
         "model",
         "introspection",
-        "relationships"
+        "relationships",
+        "schema"
     ],
-    "homepage": "https://github.com/skylence-be/laravel-eloquent-mcp",
+    "homepage": "https://github.com/skylence-be/laravel-model-inspector-mcp",
     "license": "MIT",
     "require": {
         "php": "^8.2",
@@ -28,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Skylence\\EloquentMcp\\": "src/"
+            "Skylence\\ModelInspectorMcp\\": "src/"
         }
     },
     "autoload-dev": {
@@ -39,7 +40,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Skylence\\EloquentMcp\\EloquentMcpServiceProvider"
+                "Skylence\\ModelInspectorMcp\\ModelInspectorMcpServiceProvider"
             ]
         }
     },

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Mcp\Tools;
+namespace Skylence\ModelInspectorMcp\Mcp\Tools;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -133,7 +133,7 @@ final class RelationshipMap extends Tool
 
                 $relationships[$method->getName()] = $info;
             } catch (Throwable $e) {
-                Log::debug("Eloquent MCP: failed to resolve relationship {$className}::{$method->getName()}: {$e->getMessage()}");
+                Log::debug("Model Inspector MCP: failed to resolve relationship {$className}::{$method->getName()}: {$e->getMessage()}");
 
                 $relationships[$method->getName()] = [
                     'type' => class_basename($returnTypeName),
