@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install\Enums;
+namespace Skylence\ModelInspectorMcp\Install\Enums;
 
 enum McpInstallationStrategy: string
 {

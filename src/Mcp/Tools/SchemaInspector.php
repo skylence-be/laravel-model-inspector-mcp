@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Mcp\Tools;
+namespace Skylence\ModelInspectorMcp\Mcp\Tools;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\JsonSchema\JsonSchema;

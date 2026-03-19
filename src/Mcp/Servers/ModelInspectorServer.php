@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Mcp\Servers;
+namespace Skylence\ModelInspectorMcp\Mcp\Servers;
 
 use DirectoryIterator;
 use Illuminate\Support\Str;
 use Laravel\Mcp\Server;
 
-class EloquentServer extends Server
+class ModelInspectorServer extends Server
 {
-    protected string $name = 'Laravel Eloquent';
+    protected string $name = 'Laravel Model Inspector';
 
     protected string $version = '1.0.0';
 
-    protected string $instructions = 'Eloquent model introspection MCP server. Inspect models for relationships, attributes, casts, scopes, and observers. Supports vendor package models.';
+    protected string $instructions = 'Model introspection MCP server. Inspect models for relationships, attributes, casts, scopes, and observers. Supports vendor package models.';
 
     /** @var array<int, class-string<\Laravel\Mcp\Server\Tool>> */
     protected array $tools = [];
@@ -48,7 +48,7 @@ class EloquentServer extends Server
             }
         }
 
-        $configuredTools = config('eloquent-mcp.tools', []);
+        $configuredTools = config('model-inspector-mcp.tools', []);
         foreach ($configuredTools as $toolName => $enabled) {
             if (! $enabled) {
                 $toolClass = $toolNamespace.Str::studly($toolName);

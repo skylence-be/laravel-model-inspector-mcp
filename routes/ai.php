@@ -1,6 +1,6 @@
 <?php
 
 use Laravel\Mcp\Facades\Mcp;
-use Skylence\EloquentMcp\Mcp\Servers\EloquentServer;
+use Skylence\ModelInspectorMcp\Mcp\Servers\ModelInspectorServer;
 
-Mcp::local('eloquent', EloquentServer::class);
+Mcp::local('eloquent', ModelInspectorServer::class);

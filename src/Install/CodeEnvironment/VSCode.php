@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install\CodeEnvironment;
+namespace Skylence\ModelInspectorMcp\Install\CodeEnvironment;
 
-use Skylence\EloquentMcp\Contracts\McpClient;
-use Skylence\EloquentMcp\Install\Enums\Platform;
+use Skylence\ModelInspectorMcp\Contracts\McpClient;
+use Skylence\ModelInspectorMcp\Install\Enums\Platform;
 
 class VSCode extends CodeEnvironment implements McpClient
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Mcp\Tools;
+namespace Skylence\ModelInspectorMcp\Mcp\Tools;
 
 use Composer\Autoload\ClassLoader;
 use Illuminate\Database\Eloquent\Model;
@@ -140,7 +140,7 @@ final class ModelDiscovery extends Tool
         }
 
         // Merge extra paths from config (for non-standard locations)
-        foreach (config('eloquent-mcp.extra_model_paths', []) as $extra) {
+        foreach (config('model-inspector-mcp.extra_model_paths', []) as $extra) {
             $extraPath = realpath(base_path($extra));
 
             if ($extraPath !== false && ! in_array($extraPath, $paths, true)) {
@@ -200,7 +200,7 @@ final class ModelDiscovery extends Tool
                     'relationships' => $relationCount,
                 ];
             } catch (Throwable $e) {
-                Log::debug("Eloquent MCP: skipped {$className}: {$e->getMessage()}");
+                Log::debug("Model Inspector MCP: skipped {$className}: {$e->getMessage()}");
             }
         }
 

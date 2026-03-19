@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Support;
+namespace Skylence\ModelInspectorMcp\Support;
 
 use Illuminate\Support\Str;
 
 class Config
 {
-    protected const FILE = 'eloquent-mcp.json';
+    protected const FILE = 'model-inspector-mcp.json';
 
     /**
      * @return array<int, string>

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Install\CodeEnvironment;
+namespace Skylence\ModelInspectorMcp\Install\CodeEnvironment;
 
 use Illuminate\Support\Facades\Process;
-use Skylence\EloquentMcp\Contracts\McpClient;
-use Skylence\EloquentMcp\Install\Detection\DetectionStrategyFactory;
-use Skylence\EloquentMcp\Install\Enums\McpInstallationStrategy;
-use Skylence\EloquentMcp\Install\Enums\Platform;
-use Skylence\EloquentMcp\Install\Mcp\FileWriter;
+use Skylence\ModelInspectorMcp\Contracts\McpClient;
+use Skylence\ModelInspectorMcp\Install\Detection\DetectionStrategyFactory;
+use Skylence\ModelInspectorMcp\Install\Enums\McpInstallationStrategy;
+use Skylence\ModelInspectorMcp\Install\Enums\Platform;
+use Skylence\ModelInspectorMcp\Install\Mcp\FileWriter;
 
 abstract class CodeEnvironment
 {

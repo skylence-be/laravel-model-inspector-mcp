@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp;
+namespace Skylence\ModelInspectorMcp;
 
 use Illuminate\Support\ServiceProvider;
-use Skylence\EloquentMcp\Console\InstallCommand;
-use Skylence\EloquentMcp\Console\ServeCommand;
-use Skylence\EloquentMcp\Support\Config;
+use Skylence\ModelInspectorMcp\Console\InstallCommand;
+use Skylence\ModelInspectorMcp\Console\ServeCommand;
+use Skylence\ModelInspectorMcp\Support\Config;
 
-class EloquentMcpServiceProvider extends ServiceProvider
+class ModelInspectorMcpServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/eloquent-mcp.php',
-            'eloquent-mcp'
+            __DIR__.'/../config/model-inspector-mcp.php',
+            'model-inspector-mcp'
         );
 
         $this->app->singleton(Config::class);
@@ -34,8 +34,8 @@ class EloquentMcpServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/eloquent-mcp.php' => config_path('eloquent-mcp.php'),
-            ], 'eloquent-mcp-config');
+                __DIR__.'/../config/model-inspector-mcp.php' => config_path('model-inspector-mcp.php'),
+            ], 'model-inspector-mcp-config');
         }
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Skylence\EloquentMcp\Console;
+namespace Skylence\ModelInspectorMcp\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand('eloquent-mcp:serve', 'Starts Laravel Eloquent MCP server (usually from .mcp.json)')]
+#[AsCommand('model-inspector:mcp', 'Starts Laravel Model Inspector MCP server (usually from .mcp.json)')]
 final class ServeCommand extends Command
 {
     public function handle(): int
